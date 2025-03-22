@@ -1,8 +1,10 @@
-import services.VisitorManagementService;
+import ui.MainMenu;
 
 public class Main {
     public static void main(String[] args) {
-        VisitorManagementService vms = new VisitorManagementService();
-        vms.runSystem();
+        System.out.println("🚀 Welcome to the Visitor Management System!");
+        MainMenu menu = new MainMenu();
+        menu.showMainMenu();
+        System.out.println("👋 Thank you for using the system. Goodbye!");
     }
 }

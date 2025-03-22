@@ -7,7 +7,7 @@ public class Visitor extends User {
     private String checkOutTime;
     private boolean approved;
     private String ePass;
-    private String date; // Stores visit date
+    private String date;
 
     public Visitor(String id, String name, String purpose, String visitingEmp, String date) {
         super(id, name);
@@ -20,23 +20,24 @@ public class Visitor extends User {
         this.checkOutTime = null;
     }
 
-    /** Approves visitor and generates an ePass */
     public void approve() {
         this.approved = true;
-        this.ePass = "EPASS-" + id.substring(0, 5); // Generate ePass
+        this.ePass = "EPASS-" + id.substring(0, 5);
     }
 
-    /** Generates a pre-approved ePass */
+    public boolean isApproved() {
+        return approved;
+    }
+
+    // see if it is required
     public void generateEPass(String pass) {
         this.ePass = pass;
     }
 
-    /** Checks if the visitor is pre-approved */
     public boolean isPreApproved() {
         return ePass != null;
     }
 
-    /** Visitor check-in */
     public void checkIn() {
         if (!approved) {
             System.out.println("❌ Access Denied! Visitor is not approved.");
@@ -46,7 +47,6 @@ public class Visitor extends User {
         System.out.println("✅ " + name + " checked in at " + checkInTime);
     }
 
-    /** Visitor check-out */
     public void checkOut() {
         if (checkInTime == null) {
             System.out.println("❌ Visitor has not checked in yet.");
@@ -56,22 +56,22 @@ public class Visitor extends User {
         System.out.println("✅ " + name + " checked out at " + checkOutTime);
     }
 
-    /** Get visiting employee name */
     public String getVisitingEmp() {
         return visitingEmp;
     }
 
-    /** Get generated ePass */
     public String getEPass() {
         return ePass;
     }
 
-    /** Get visit date */
+    public String getName() {
+        return name;
+    }
+
     public String getDate() {
         return date;
     }
 
-    /** Display visitor details */
     @Override
     public void displayInfo() {
         System.out.println("Visitor ID: " + id + ", Name: " + name + ", Purpose: " + purpose + ", Visiting: "

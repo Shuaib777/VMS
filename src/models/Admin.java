@@ -9,7 +9,7 @@ public class Admin extends User {
 
     public void setPreApproveLimit(int limit) {
         this.preApproveLimit = limit;
-        System.out.println("Pre-approval limit set to " + limit);
+        System.out.println("✅ Pre-approval limit set to " + limit);
     }
 
     @Override
