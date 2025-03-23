@@ -57,11 +57,36 @@ public class EmployeeMenu {
     }
 
     private void preApproveVisitor(Employee emp) {
-        System.out.print("Enter Visitor Name for Pre-Approval: ");
-        String vName = scanner.nextLine();
-        System.out.print("Enter Time Slot: ");
-        String timeSlot = scanner.nextLine();
+        System.out.println("\n📝 Visitor Pre-Approval Process");
 
-        employeeService.preApproveVisitor(emp, vName, timeSlot);
+        // ✅ Get Visitor Name
+        System.out.print("🔹 Enter Visitor Name: ");
+        String vName = scanner.nextLine().trim();
+        while (vName.isEmpty()) {
+            System.out.print("❌ Visitor Name cannot be empty! Enter Visitor Name: ");
+            vName = scanner.nextLine().trim();
+        }
+
+        // ✅ Get Time Slot
+        System.out.print("⏰ Enter Time Slot (HH:mm - HH:mm): ");
+        String timeSlot = scanner.nextLine().trim();
+        while (!timeSlot.matches("\\d{2}:\\d{2} - \\d{2}:\\d{2}")) {
+            System.out.print("❌ Invalid format! Please enter time slot as HH:mm - HH:mm: ");
+            timeSlot = scanner.nextLine().trim();
+        }
+
+        // ✅ Get Company Name (Optional)
+        System.out.print("🏢 Enter Visitor's Company Name (Press Enter to skip): ");
+        String companyName = scanner.nextLine().trim();
+        companyName = companyName.isEmpty() ? "N/A" : companyName;
+
+        // ✅ Get Contact Information (Optional)
+        System.out.print("📞 Enter Visitor's Contact Info (Press Enter to skip): ");
+        String contactInfo = scanner.nextLine().trim();
+        contactInfo = contactInfo.isEmpty() ? "N/A" : contactInfo;
+
+        // ✅ Process the pre-approval request
+        employeeService.preApproveVisitor(emp, vName, timeSlot, companyName, contactInfo);
     }
+
 }

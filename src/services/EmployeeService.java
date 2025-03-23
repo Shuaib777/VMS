@@ -4,6 +4,7 @@ import models.Employee;
 import models.Visitor;
 import data.Database;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -17,20 +18,43 @@ public class EmployeeService {
 
         if (response.equalsIgnoreCase("yes")) {
             emp.approveVisitor(visitor);
-            System.out.println("✅ Visitor Approved - ePass: " + visitor.getEPass());
         } else {
             emp.denyVisitor(visitor);
         }
     }
 
     /** ✅ Pre-approves a visitor */
-    public void preApproveVisitor(Employee emp, String visitorName, String timeSlot) {
-        if (Database.preApprovedList.containsKey(visitorName)) {
-            System.out.println("⚠️ Visitor " + visitorName + " is already pre-approved.");
-            return;
-        }
+    public void preApproveVisitor(Employee emp, String visitorName, String timeSlot, String companyName,
+            String contactInfo) {
+        // ✅ Generate a unique ePass
         String ePass = "EPASS-" + UUID.randomUUID().toString().substring(0, 5);
-        Database.preApprovedList.put(visitorName, ePass);
-        System.out.println("✅ Pre-Approved Visitor " + visitorName + " for " + timeSlot + " - ePass: " + ePass);
+
+        // ✅ Store pre-approval details
+        Database.preApprovedList.put(ePass, timeSlot);
+
+        // ✅ Create a visitor object with all necessary details
+        Visitor visitor = new Visitor(
+                ePass, // ePass ID (Used as Visitor ID)
+                visitorName, // Visitor Name
+                "Pre-Approved Visit", // Purpose
+                emp.getName(), // Visiting Employee Name
+                LocalDate.now().toString(), // Date (Auto-generated)
+                null, // Photo Path (Optional, set later)
+                companyName, // Visitor’s Company
+                contactInfo // Visitor’s Contact Info
+        );
+        visitor.setEPass(ePass);
+
+        // ✅ Store the visitor in the database
+        Database.visitorDB.put(ePass, visitor);
+
+        // ✅ Log pre-approval details
+        System.out.println("\n✅ Pre-Approved Visitor Successfully");
+        System.out.println(" 🎫 ePass: " + ePass);
+        System.out.println(" 👤 Name: " + visitorName);
+        System.out.println(" 🕒 Time Slot: " + timeSlot);
+        System.out.println(" 🏢 Company: " + (companyName != null && !companyName.isEmpty() ? companyName : "N/A"));
+        System.out.println(" 📞 Contact: " + (contactInfo != null && !contactInfo.isEmpty() ? contactInfo : "N/A"));
     }
+
 }
