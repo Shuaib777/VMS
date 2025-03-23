@@ -10,6 +10,8 @@ public class Database {
     public static final Map<String, Visitor> visitorDB = new HashMap<>();
     public static final Map<String, String> preApprovedList = new HashMap<>();
     public static final Map<String, List<Visitor>> visitorLog = new HashMap<>();
+    public static final Map<String, Integer> preApprovalCount = new HashMap<>();
+    public static int preApproveLimit = 5;
 
     static {
         empDB.put("Alice", new Employee("E101", "Alice", "HR"));

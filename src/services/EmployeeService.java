@@ -26,11 +26,15 @@ public class EmployeeService {
     /** ✅ Pre-approves a visitor */
     public void preApproveVisitor(Employee emp, String visitorName, String timeSlot, String companyName,
             String contactInfo) {
+
+        int currentCount = Database.preApprovalCount.getOrDefault(emp.getId(), 0);
+
         // ✅ Generate a unique ePass
         String ePass = "EPASS-" + UUID.randomUUID().toString().substring(0, 5);
 
         // ✅ Store pre-approval details
         Database.preApprovedList.put(ePass, timeSlot);
+        Database.preApprovalCount.put(emp.getId(), currentCount + 1);
 
         // ✅ Create a visitor object with all necessary details
         Visitor visitor = new Visitor(

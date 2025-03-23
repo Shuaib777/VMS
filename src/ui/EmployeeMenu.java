@@ -57,6 +57,15 @@ public class EmployeeMenu {
     }
 
     private void preApproveVisitor(Employee emp) {
+        int currentCount = Database.preApprovalCount.getOrDefault(emp.getId(), 0);
+
+        // ✅ Check if the limit is reached
+        if (currentCount >= Database.preApproveLimit) {
+            System.out.println("❌ Pre-approval limit reached for " + emp.getName() + ". Maximum allowed: "
+                    + Database.preApproveLimit);
+            return;
+        }
+
         System.out.println("\n📝 Visitor Pre-Approval Process");
 
         // ✅ Get Visitor Name

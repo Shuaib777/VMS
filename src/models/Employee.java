@@ -22,6 +22,10 @@ public class Employee extends User {
         return name;
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public void displayInfo() {
         System.out.println("Employee ID: " + id + ", Name: " + name + ", Department: " + department);

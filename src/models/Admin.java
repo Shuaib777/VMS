@@ -1,14 +1,15 @@
 package models;
 
+import data.Database;
+
 public class Admin extends User {
-    private int preApproveLimit = 5;
 
     public Admin(String id, String name) {
         super(id, name);
     }
 
     public void setPreApproveLimit(int limit) {
-        this.preApproveLimit = limit;
+        Database.preApproveLimit = limit;
         System.out.println("✅ Pre-approval limit set to " + limit);
     }
 
