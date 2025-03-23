@@ -9,13 +9,13 @@ public class Employee extends User {
     }
 
     public boolean approveVisitor(Visitor visitor) {
-        System.out.println("✅ Visitor " + visitor.getName() + " has been approved by " + name);
+        System.out.println("Visitor " + visitor.getName() + " has been approved by " + name);
         visitor.approve();
         return true;
     }
 
     public void denyVisitor(Visitor visitor) {
-        System.out.println("❌ Visitor " + visitor.getName() + " has been denied by " + name);
+        System.out.println("Visitor " + visitor.getName() + " has been denied by " + name);
     }
 
     public String getName() {

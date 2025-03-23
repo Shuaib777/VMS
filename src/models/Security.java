@@ -7,6 +7,6 @@ public class Security extends User {
 
     @Override
     public void displayInfo() {
-        System.out.println("🔒 Security ID: " + id + ", Name: " + name);
+        System.out.println("Security ID: " + id + ", Name: " + name);
     }
 }

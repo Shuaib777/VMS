@@ -11,7 +11,7 @@ public class MainMenu {
 
     public void showMainMenu() {
         while (true) {
-            System.out.println("\n🔹 Select User:");
+            System.out.println("\nSelect User:");
             System.out.println("1. Security");
             System.out.println("2. Employee");
             System.out.println("3. Admin");
@@ -24,10 +24,10 @@ public class MainMenu {
                 case 2 -> new EmployeeMenu().showEmployeeMenu();
                 case 3 -> new AdminMenu().showAdminMenu(admin);
                 case 4 -> {
-                    System.out.println("🚪 Exiting System...");
+                    System.out.println("Exiting System...");
                     return;
                 }
-                default -> System.out.println("❌ Invalid choice. Try again.");
+                default -> System.out.println("Invalid choice. Try again.");
             }
         }
     }

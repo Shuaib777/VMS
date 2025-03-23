@@ -10,7 +10,7 @@ public class AdminMenu {
 
     public void showAdminMenu(Admin admin) {
         while (true) {
-            System.out.println("\n⚙️ Admin Options:");
+            System.out.println("\nAdmin Options:");
             System.out.println("1. Set Pre-Approval Limit");
             System.out.println("2. Back to Main Menu");
             int choice = scanner.nextInt();
@@ -21,7 +21,7 @@ public class AdminMenu {
                 case 2 -> {
                     return;
                 }
-                default -> System.out.println("❌ Invalid choice.");
+                default -> System.out.println("Invalid choice.");
             }
         }
     }
