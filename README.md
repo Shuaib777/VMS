@@ -49,7 +49,7 @@ The **Visitor Management System (VMS)** is a **Java-based application** designed
 - **`Security`** – Manages check-ins, check-outs, and visitor logs.
 - **`Admin`** – Sets system-wide configurations, including pre-approval limits.
 
-#### B. Services (Business Logic Layer)
+#### B. Services (Logic Layer)
 
 - **`SecurityService`** – Handles visitor registration, check-ins, check-outs, and logging.
 - **`EmployeeService`** – Manages visitor approvals and pre-approvals.
@@ -108,14 +108,14 @@ The **Visitor Management System (VMS)** is a **Java-based application** designed
 
 ## Database Schema (In-Memory Storage Example)
 
-| Table Name           | Fields                                                                   | Description                        |
-| -------------------- | ------------------------------------------------------------------------ | ---------------------------------- |
-| **Users**            | `id, name, role`                                                         | Stores common user details.        |
-| **Visitors**         | `id, name, purpose, company, contact, ePass, photo, check-in, check-out` | Stores visitor details.            |
-| **Employees**        | `id, name, department`                                                   | Employees who approve visitors.    |
-| **PreApprovedList**  | `ePass, timeSlot`                                                        | Stores ePass mapped to time slots. |
-| **VisitorLog**       | `date, list<Visitor>`                                                    | Stores all visitors per date.      |
-| **PreApprovalCount** | `employeeId, count`                                                      | Tracks pre-approvals per employee. |
+| Table Name           | Fields                                                                                | Description                        |
+| -------------------- | ------------------------------------------------------------------------------------- | ---------------------------------- |
+| **Users**            | `id, name, role`                                                                      | Stores common user details.        |
+| **Visitors**         | `id, name, purpose, visitingEmp, company, contact, ePass, photo, check-in, check-out` | Stores visitor details.            |
+| **Employees**        | `id, name, department`                                                                | Employees who approve visitors.    |
+| **PreApprovedList**  | `ePass, timeSlot`                                                                     | Stores ePass mapped to time slots. |
+| **VisitorLog**       | `date, list<Visitor>`                                                                 | Stores all visitors per date.      |
+| **PreApprovalCount** | `employeeId, count`                                                                   | Tracks pre-approvals per employee. |
 
 ---
 
@@ -173,11 +173,11 @@ The **Visitor Management System (VMS)** provides a **secure, structured, and sca
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Shuaib777/VMS
    ```
 2. Navigate to the project directory:
    ```bash
-   cd visitor-management-system
+   cd visitor-management-system/src
    ```
 3. Compile and Run:
    ```bash
