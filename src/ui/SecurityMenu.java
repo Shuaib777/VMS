@@ -12,17 +12,15 @@ public class SecurityMenu {
         while (true) {
             System.out.println("\nSecurity Options:");
             System.out.println("1. Register Visitor");
-            System.out.println("2. Check-in Visitor");
-            System.out.println("3. Pre-Approved Check-in");
-            System.out.println("4. Check-out Visitor");
-            System.out.println("5. Show Visitors for a Date");
-            System.out.println("6. Back to Main Menu");
+            System.out.println("2. Pre-Approved Check-in");
+            System.out.println("3. Check-out Visitor");
+            System.out.println("4. Show Visitors for a Date");
+            System.out.println("5. Back to Main Menu");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1 -> registerVisitor();
-                // case 2 -> checkInVisitor();
                 case 2 -> preApprovedCheckIn();
                 case 3 -> checkOutVisitor();
                 case 4 -> showVisitorsForDate();
@@ -54,11 +52,6 @@ public class SecurityMenu {
 
         securityService.registerVisitor(vName, purpose, empName, photoPath, companyName, contactInfo);
     }
-
-    // private void checkInVisitor() {
-    // System.out.print("Enter E-pass ID for Check-in: ");
-    // securityService.checkInVisitor(scanner.nextLine());
-    // }
 
     private void checkOutVisitor() {
         System.out.print("Enter E-pass ID for Check-out: ");

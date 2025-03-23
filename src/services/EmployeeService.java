@@ -23,7 +23,7 @@ public class EmployeeService {
     }
 
     public void preApproveVisitor(Employee emp, String visitorName, String timeSlot, String companyName,
-            String contactInfo) {
+            String photoPath, String contactInfo) {
 
         int currentCount = Database.preApprovalCount.getOrDefault(emp.getId(), 0);
 
@@ -38,7 +38,7 @@ public class EmployeeService {
                 "Pre-Approved Visit",
                 emp.getName(),
                 LocalDate.now().toString(),
-                null,
+                photoPath,
                 companyName,
                 contactInfo);
         visitor.setEPass(ePass);
@@ -52,6 +52,7 @@ public class EmployeeService {
         System.out.println(" Time Slot: " + timeSlot);
         System.out.println(" Company: " + (companyName != null && !companyName.isEmpty() ? companyName : "N/A"));
         System.out.println(" Contact: " + (contactInfo != null && !contactInfo.isEmpty() ? contactInfo : "N/A"));
+        System.out.println(" Photo: " + photoPath);
         System.out.println("---------------------------------");
     }
 }

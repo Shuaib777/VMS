@@ -24,16 +24,14 @@ public class EmployeeMenu {
 
         while (true) {
             System.out.println("\nEmployee Options:");
-            System.out.println("1. Approve/Deny Visitor");
-            System.out.println("2. Pre-Approve Visitor");
-            System.out.println("3. Back to Main Menu");
+            System.out.println("1. Pre-Approve Visitor");
+            System.out.println("2. Back to Main Menu");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
-                case 1 -> processVisitorApproval(emp);
-                case 2 -> preApproveVisitor(emp);
-                case 3 -> {
+                case 1 -> preApproveVisitor(emp);
+                case 2 -> {
                     return;
                 }
                 default -> System.out.println("Invalid choice.");
@@ -89,12 +87,15 @@ public class EmployeeMenu {
         String companyName = scanner.nextLine().trim();
         companyName = companyName.isEmpty() ? "N/A" : companyName;
 
-        // Get Contact Information (Optional)
-        System.out.print("Enter Visitor's Contact Info (Press Enter to skip): ");
+        // Get Contact Information
+        System.out.print("Enter Visitor's Contact Info: ");
         String contactInfo = scanner.nextLine().trim();
-        contactInfo = contactInfo.isEmpty() ? "N/A" : contactInfo;
+
+        // Get photoPath
+        System.out.print("Enter Visitor's Photo: ");
+        String photoPath = scanner.nextLine().trim();
 
         // Process the pre-approval request
-        employeeService.preApproveVisitor(emp, vName, timeSlot, companyName, contactInfo);
+        employeeService.preApproveVisitor(emp, vName, timeSlot, companyName, photoPath, contactInfo);
     }
 }

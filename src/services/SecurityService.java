@@ -67,15 +67,6 @@ public class SecurityService {
         System.out.println("---------------------------------");
     }
 
-    // public void checkInVisitor(String ePass) {
-    // if (Database.visitorDB.containsKey(ePass)) {
-    // Visitor visitor = Database.visitorDB.get(ePass);
-    // visitor.checkIn();
-    // } else {
-    // System.out.println("ePass ID not found or visitor not approved.");
-    // }
-    // }
-
     public void checkOutVisitor(String ePass) {
         if (Database.visitorDB.containsKey(ePass)) {
             Visitor visitor = Database.visitorDB.get(ePass);
