@@ -80,16 +80,18 @@ public class SecurityService {
         if (Database.visitorLog.containsKey(date) && !Database.visitorLog.get(date).isEmpty()) {
             System.out.println("\nVisitors on " + date + ":");
             System.out.println(
-                    "--------------------------------------------------------------------------------------------------------");
-            System.out.printf(" %-10s | %-15s | %-15s | %-15s | %-12s | %-10s | %-8s | %-8s | %-20s%n",
-                    "E-Pass ID", "Name", "Company", "Contact Info", "Visiting Emp", "Purpose", "Check-in", "Check-out",
+                    "----------------------------------------------------------------------------------------------------------------------");
+            System.out.printf(" %-3s | %-10s | %-15s | %-15s | %-15s | %-12s | %-10s | %-8s | %-8s | %-20s%n",
+                    "No.", "E-Pass ID", "Name", "Company", "Contact Info", "Visiting Emp", "Purpose", "Check-in",
+                    "Check-out",
                     "Photo Path");
             System.out.println(
-                    "--------------------------------------------------------------------------------------------------------");
+                    "----------------------------------------------------------------------------------------------------------------------");
 
+            int count = 1;
             for (Visitor v : Database.visitorLog.get(date)) {
-                System.out.printf(" %-10s | %-15s | %-15s | %-15s | %-12s | %-10s | %-8s | %-8s | %-20s%n",
-                        v.getEPass(), v.getName(),
+                System.out.printf(" %-3d | %-10s | %-15s | %-15s | %-15s | %-12s | %-10s | %-8s | %-8s | %-20s%n",
+                        count++, v.getEPass(), v.getName(),
                         (v.getCompanyName() != null ? v.getCompanyName() : "N/A"),
                         (v.getContactInfo() != null ? v.getContactInfo() : "N/A"),
                         v.getVisitingEmp(), v.getPurpose(),
@@ -97,8 +99,9 @@ public class SecurityService {
                         (v.getCheckOutTime() != null ? v.getCheckOutTime() : "N/A"),
                         (v.getPhotoPath() != null ? v.getPhotoPath() : "No Photo"));
             }
+
             System.out.println(
-                    "--------------------------------------------------------------------------------------------------------");
+                    "----------------------------------------------------------------------------------------------------------------------");
         } else {
             System.out.println("\nVisitors on " + date + ": No visitors found.");
         }
