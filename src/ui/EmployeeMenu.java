@@ -57,7 +57,6 @@ public class EmployeeMenu {
     private void preApproveVisitor(Employee emp) {
         int currentCount = Database.preApprovalCount.getOrDefault(emp.getId(), 0);
 
-        // Check if the limit is reached
         if (currentCount >= Database.preApproveLimit) {
             System.out.println("Pre-approval limit reached for " + emp.getName() + ". Maximum allowed: "
                     + Database.preApproveLimit);
@@ -66,7 +65,6 @@ public class EmployeeMenu {
 
         System.out.println("\nVisitor Pre-Approval Process");
 
-        // Get Visitor Name
         System.out.print("Enter Visitor Name: ");
         String vName = scanner.nextLine().trim();
         while (vName.isEmpty()) {
@@ -74,7 +72,6 @@ public class EmployeeMenu {
             vName = scanner.nextLine().trim();
         }
 
-        // Get Time Slot
         System.out.print("Enter Time Slot (HH:mm - HH:mm): ");
         String timeSlot = scanner.nextLine().trim();
         while (!timeSlot.matches("\\d{2}:\\d{2} - \\d{2}:\\d{2}")) {
@@ -82,20 +79,22 @@ public class EmployeeMenu {
             timeSlot = scanner.nextLine().trim();
         }
 
-        // Get Company Name (Optional)
         System.out.print("Enter Visitor's Company Name (Press Enter to skip): ");
         String companyName = scanner.nextLine().trim();
         companyName = companyName.isEmpty() ? "N/A" : companyName;
 
-        // Get Contact Information
         System.out.print("Enter Visitor's Contact Info: ");
         String contactInfo = scanner.nextLine().trim();
 
-        // Get photoPath
-        System.out.print("Enter Visitor's Photo: ");
-        String photoPath = scanner.nextLine().trim();
+        String photoPath;
+        while (true) {
+            System.out.print("Enter Visitor's Photo: ");
+            photoPath = scanner.nextLine().trim();
+            if (!photoPath.isEmpty())
+                break;
+            System.out.println("!!Photo Path cannot be empty. Please enter a valid path.");
+        }
 
-        // Process the pre-approval request
         employeeService.preApproveVisitor(emp, vName, timeSlot, companyName, photoPath, contactInfo);
     }
 }

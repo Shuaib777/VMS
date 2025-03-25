@@ -33,22 +33,51 @@ public class SecurityMenu {
     }
 
     private void registerVisitor() {
-        System.out.print("Enter Visitor Name: ");
-        String vName = scanner.nextLine();
-        System.out.print("Enter Purpose: ");
-        String purpose = scanner.nextLine();
-        System.out.print("Enter Employee Name to Visit: ");
-        String empName = scanner.nextLine();
+        String vName, purpose, empName, companyName, contactInfo, photoPath;
+
+        while (true) {
+            System.out.print("Enter Visitor Name: ");
+            vName = scanner.nextLine().trim();
+            if (!vName.isEmpty())
+                break;
+            System.out.println("!!Visitor Name cannot be empty. Please enter a valid name.");
+        }
+
+        while (true) {
+            System.out.print("Enter Purpose: ");
+            purpose = scanner.nextLine().trim();
+            if (!purpose.isEmpty())
+                break;
+            System.out.println("!!Purpose cannot be empty. Please enter a valid purpose.");
+        }
+
+        while (true) {
+            System.out.print("Enter Employee Name to Visit: ");
+            empName = scanner.nextLine().trim();
+            if (!empName.isEmpty())
+                break;
+            System.out.println("!!Employee Name cannot be empty. Please enter a valid name.");
+        }
 
         System.out.print("Enter Visitor's Company Name (or press Enter to skip): ");
-        String companyName = scanner.nextLine().trim();
-        companyName = companyName.isEmpty() ? null : companyName;
+        companyName = scanner.nextLine().trim();
+        companyName = companyName.isEmpty() ? "N/A" : companyName;
 
-        System.out.print("Enter Visitor's Contact Info: ");
-        String contactInfo = scanner.nextLine().trim();
+        while (true) {
+            System.out.print("Enter Visitor's Contact Info: ");
+            contactInfo = scanner.nextLine().trim();
+            if (!contactInfo.isEmpty())
+                break;
+            System.out.println("!!Contact Info cannot be empty. Please enter a valid contact.");
+        }
 
-        System.out.print("Enter Visitor Photo Path: ");
-        String photoPath = scanner.nextLine().trim();
+        while (true) {
+            System.out.print("Enter Visitor's Photo: ");
+            photoPath = scanner.nextLine().trim();
+            if (!photoPath.isEmpty())
+                break;
+            System.out.println("!!Photo Path cannot be empty. Please enter a valid path.");
+        }
 
         securityService.registerVisitor(vName, purpose, empName, photoPath, companyName, contactInfo);
     }
